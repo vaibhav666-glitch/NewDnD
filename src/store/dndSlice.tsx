@@ -12,7 +12,7 @@ const initialState: DnDState={
         {
         id:"0",
         type:'customNode',
-        data:{label:'start',value:'start'},
+        data:{label:'start',name:'start',value:1},
         position:{x:250,y:5},
         }
     ],
@@ -41,6 +41,10 @@ const dndSlice=createSlice({
             state.edges.push(action.payload);
           },
           addNode: (state, action: PayloadAction<Node>) => {
+            const node=action.payload;
+            if(!node.data){
+                node.data = { label: "Unknown", name: "unknown", value: -1 };
+            }
             state.nodes.push(action.payload);
           },
 

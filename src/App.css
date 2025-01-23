@@ -6,6 +6,13 @@ body {
   font-family: sans-serif;
   box-sizing: border-box;
 }
+.customNode{
+  padding: "10px";
+  background: "#fff";
+  border: "1px solid #ccc";
+  border-radius: "8px";
+  text-align: "center";
+}
  
 #app {
   width: 100vw;
@@ -70,10 +77,3 @@ body {
   }
 }
 
-.customNode{
-  padding: "10px";
-  background: "#fff";
-  border: "1px solid #ccc";
-  border-radius: "8px";
-  text-align: "center";
-}

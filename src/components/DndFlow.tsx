@@ -16,6 +16,7 @@ import { RootState } from "../store/store";
 import "@xyflow/react/dist/style.css";
 import Sidebar from "./SideBar";
 import CustomNode from "./CustomNode";
+//import Custom from "./Custom";
 
 import {
   setNodes,
@@ -31,8 +32,8 @@ let id = 1;
 const getId = () => `${id++}`;
 
 function DnDFlow() {
-  const nodeTypes={customNode:CustomNode};
-  console.log(nodeTypes)
+  
+ // console.log("am node types", nodeTypes)
   const dispatch=useDispatch();
   const {nodes,edges} = useSelector((state: RootState) => state.dnd);
   const { screenToFlowPosition } = useReactFlow(); 
@@ -40,7 +41,6 @@ function DnDFlow() {
   const onConnect: OnConnect = useCallback(
    
     (params)=>{
-      console.log("am source handle", params.sourceHandle)
     let newEdges=addEdgeHelper(params,edges)
     if(params.sourceHandle!==null){
     const edgeLabel=params.sourceHandle==="source1"?"True":"False"
@@ -53,13 +53,25 @@ function DnDFlow() {
   ); 
   const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault();
+    //console.log("yooo")
     event.dataTransfer.dropEffect = "move"; 
   }, []);
 
+  const nodeTypes={customNode:CustomNode};
+ 
+
+  
+  
   const onDrop = useCallback(
-    (event: React.DragEvent) => {
+     (event: React.DragEvent) => {
+      
       event.preventDefault();
-      const type = event.dataTransfer.getData("application/reactflow");
+      
+      const nodeType =  event.dataTransfer.getData("application/reactflow");
+      if (!nodeType) {
+        console.log("Node type is missing");
+        return;
+      }
       const position = screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -68,8 +80,8 @@ function DnDFlow() {
       const newNode = {
         id: getId(),
         type:'customNode',
-        position,
-        data: { label: `${type}` ,value:id  },
+        data: { label: `${nodeType}`,name:`${nodeType}`,value:id },
+        position
       };
       dispatch(addNode(newNode))
     },
@@ -99,14 +111,14 @@ function DnDFlow() {
           }}
           onEdgesChange={(changes) => {
             const updatedEdges = applyEdgeChanges(changes, edges);
-            console.log("am update edge", updatedEdges)
+           // console.log("am update edge", updatedEdges)
             dispatch(setEdges(updatedEdges)); // Dispatch the updated edges to Redux
           }}
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
-          nodeTypes={nodeTypes}
           onNodeDoubleClick={onNodeDoubleClick} // Add double-click event
+          nodeTypes={nodeTypes}
           fitView
           style={{ backgroundColor: "#F7F9FB" }}
         >

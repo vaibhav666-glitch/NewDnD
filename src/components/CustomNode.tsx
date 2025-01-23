@@ -1,12 +1,17 @@
 import { Handle,Position } from "@xyflow/react";
 import "../App.css"
 const CustomNode = ({data}:any) => {
-console.log("am data",data)
+
   const renderNode=()=>{
-    switch (data.label){ 
+    if (!data || !data.name) {
+      return <div>Unknown Node</div>; // Handle missing data gracefully
+    }
+
+    switch (data.name){
       case "start":
         return(
           <div 
+          
           style={{
             padding: "10px",
             background: "#fff",
@@ -14,7 +19,7 @@ console.log("am data",data)
             borderRadius: "8px",
             textAlign: "center",
           }}>
-            <p>{data.label||'start Node'}</p>
+            <p>{data?.label||'start Node'}</p>
           <Handle
           type="source"
           position={Position.Right}
@@ -32,12 +37,13 @@ console.log("am data",data)
               borderRadius: "8px",
               textAlign: "center",
             }}>
-              <p>{data.label||'start Node'}</p>
+              <p>{data?.label||'start Node'}</p>
             <Handle
             type="target"
             position={Position.Left}
             style={{top:'50%'}}
             />
+       
             </div>
           )
 
@@ -106,7 +112,7 @@ console.log("am data",data)
           </div>
         )
         default:
-          return <div>Unknown Node Type</div>; // Handle unrecognized node types
+          return <div>Unknown Node yo</div>; // Handle unrecognized node types
       
     }
   }
