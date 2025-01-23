@@ -6,8 +6,7 @@ const StartWorkFlow=()=>{
     const {nodes}=useSelector((state:RootState)=>state.dnd)
    
     const dispatch=useDispatch()
-        const start=()=>{
-     
+        const start=()=>{    
         console.log("am value", nodes[0].data)
         console.log(nodes[0].data.value)
         dispatch(updateNode({ ...nodes[0], data: { ...nodes[0].data, value: '40', } }))
