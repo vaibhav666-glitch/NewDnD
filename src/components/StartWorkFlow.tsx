@@ -3,7 +3,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { RootState } from "../store/store";
 import { updateNode } from "../store/dndSlice";
 const StartWorkFlow=()=>{
-    const {nodes,edges}=useSelector((state:RootState)=>state.dnd)
+    const {nodes}=useSelector((state:RootState)=>state.dnd)
    
     const dispatch=useDispatch()
         const start=()=>{
@@ -33,6 +33,7 @@ const StartWorkFlow=()=>{
 
         const resultNode=(id:number)=>{
            // nodes[id]
+           console.log(id)
         }
     
    

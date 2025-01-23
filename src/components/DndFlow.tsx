@@ -22,7 +22,7 @@ import {
   setNodes,
   setEdges,
   addNode,
-  addEdge,
+ 
   updateNode
 
 }from "../store/dndSlice";
@@ -90,7 +90,7 @@ function DnDFlow() {
 
  
   const onNodeDoubleClick = useCallback(
-    (event: React.MouseEvent, node: Node) => {
+    (_event: React.MouseEvent, node: Node) => {
       const newLabel = prompt("Enter new label:");
       if (newLabel) {
         dispatch(updateNode({ ...node, data: { ...node.data, label: newLabel, } }))
