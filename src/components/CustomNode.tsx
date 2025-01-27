@@ -3,10 +3,6 @@ import "../App.css"
 const CustomNode = ({data}:any) => {
 
   const renderNode=()=>{
-    if (!data || !data.name) {
-      return <div>Unknown Node</div>; // Handle missing data gracefully
-    }
-
     switch (data.name){
       case "start":
         return(
@@ -19,7 +15,7 @@ const CustomNode = ({data}:any) => {
             borderRadius: "8px",
             textAlign: "center",
           }}>
-            <p>{data?.label||'start Node'}</p>
+            <p>{data.label}</p>
           <Handle
           type="source"
           position={Position.Right}
@@ -90,6 +86,7 @@ const CustomNode = ({data}:any) => {
 
         case "data":
         return(
+          <>
           <div 
           style={{
             padding: "10px",
@@ -98,7 +95,8 @@ const CustomNode = ({data}:any) => {
             borderRadius: "8px",
             textAlign: "center",
           }}>
-            <p>{data.label||'start Node'}</p>
+            <p>{data.label||'data'}</p>
+            
           <Handle
           type="target"
           position={Position.Left}
@@ -110,6 +108,8 @@ const CustomNode = ({data}:any) => {
           style={{top:'50%'}}
           />
           </div>
+          {/* <span>yo</span> */}
+          </>
         )
         default:
           return <div>Unknown Node yo</div>; // Handle unrecognized node types

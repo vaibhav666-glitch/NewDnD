@@ -22,7 +22,6 @@ import {
   setNodes,
   setEdges,
   addNode,
- 
   updateNode
 
 }from "../store/dndSlice";
@@ -57,16 +56,16 @@ function DnDFlow() {
     event.dataTransfer.dropEffect = "move"; 
   }, []);
 
-  const nodeTypes={customNode:CustomNode};
+  
  
-
+  const nodeTypes={customNode:CustomNode};
   
   
   const onDrop = useCallback(
      (event: React.DragEvent) => {
       
       event.preventDefault();
-      
+     
       const nodeType =  event.dataTransfer.getData("application/reactflow");
       if (!nodeType) {
         console.log("Node type is missing");

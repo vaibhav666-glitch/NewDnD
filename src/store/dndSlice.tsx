@@ -12,7 +12,7 @@ const initialState: DnDState={
         {
         id:"0",
         type:'customNode',
-        data:{label:'start',name:'start',value:1},
+        data:{label:'',name:'start',value:1},
         position:{x:250,y:5},
         }
     ],
